@@ -1,56 +1,27 @@
-# Pylon — Gasless Transactions SDK for Base
+# Hi, I'm Reza 👋
 
-ERC-4337 paymaster SDK and contracts (Base Sepolia testnet, unaudited). Sponsor gas for your users on Base — they never need to hold ETH.
+Independent security researcher working on **authorization and revocation in ERC-4337 / ERC-7579 smart accounts**: how session keys, permission modules, and guardian confirmations behave when authority is revoked or its configuration changes.
 
-## Live Demo
+## What I work on
 
-🎥 Demo video: https://youtu.be/GFK45UYLqjA?si=rTyItYTjUIumJZ3y
+- 🔎 **Research**: code-reading comparisons and test patterns for revocation and authorization-path parity. I report a finding only when a PoC on the real code confirms it.
+- 📐 **Spec work**: a conformance-property proposal for ERC-7579 (revocation monotonicity and authorization-path parity), on [Ethereum Magicians](https://ethereum-magicians.org/t/erc-7579-minimal-modular-smart-accounts/17336).
+- 🛠️ **[Pylon](https://github.com/pyloninfra/pylon-sdk)**: an ERC-4337 paymaster SDK and session-key manager I built (Base Sepolia testnet, unaudited). It is the testbed for this research.
+- 📝 **Writing**:
+  - [Revocation in AA Wallets: Atomicity as a Design Question](https://paragraph.com/@pyloncore/revocation-isnt-atomic-a-recurring-bug-class-in-account-abstraction-wallets)
+  - [When “Restricted” Only Means Restricted on One Path](https://paragraph.com/@pyloncore/when-restricted-only-means-restricted-on-one-path)
+  - [Reading the Revocation Paths of Six AA Wallets](https://paragraph.com/@pyloncore/i-checked-six-major-aa-wallets-for-a-bug-class-that-broke-one-wallets-revocation-heres-what-i-found)
 
-💬 Join our Discord: https://discord.gg/wnatvevWx
+## Security reviews
 
-✅ Verified on-chain transaction (Base Sepolia): https://sepolia.basescan.org/tx/0x37343b68b53e1e4c9ea35343fbdf10b88a757966678bac098dc67ea8eb050af3
+I offer focused reviews of revocation and authorization-lifecycle flows in AA and modular-account systems: session-key expiry and revocation, policy and signer module removal sequencing, recovery and guardian confirmation handling, and related state-consistency issues.
 
-The smart account in that transaction paid zero gas — the paymaster covered the entire cost.
+## Contact
 
-## Deployed Contracts (Base Sepolia)
+- 🌐 [pylon-security.pyloncore.workers.dev](https://pylon-security.pyloncore.workers.dev/#contact)
+- 📧 <pyloncore@gmail.com>
+- 🐦 [@pyloninfra](https://x.com/pyloninfra)
 
-| Contract | Address |
-|---|---|
-| PylonPaymasterV2 (proxy) | 0xE9DA15295cF4e436Ed93d6CF287122f196130707 |
-| PylonPaymasterV2 (implementation) | 0x3B3FC6E377a241392fa46d0a6dddbfcab2a687F0 |
-| SessionKeyManager | 0x97DF69892B5d3d1237a47a5BFA70a190F92197cC |
-| SimpleAccountFactory | 0xF1897165fBBE0Cfcc195B4698CcbD4b26d569c4f |
-| EntryPoint (v0.7, standard) | 0x0000000071727De22E5E9d8BAf0edAc6f37da032 |
+---
 
-## What's in this repo
-
-- `packages/sdk` — TypeScript/React SDK for requesting gas sponsorship
-- `packages/common` — shared types, policy signing, UserOperation helpers
-- `contracts/` — the paymaster and account contracts (Solidity, Foundry)
-
-The hosted API, dashboard, and billing system that power the managed version of this service are maintained in a private repository.
-
-## Quick start (SDK)
-
-```bash
-pnpm add @pylon/sdk
-```
-
-```ts
-import { createSponsorKit } from '@pylon/sdk'
-
-const client = createSponsorKit('base', process.env.PYLON_API_KEY)
-const { paymasterAndData } = await client.sponsor(userOp)
-```
-
-## Building the contracts
-
-```bash
-cd contracts
-forge install
-forge build
-```
-
-## License
-
-MIT
+> I publish what I can reproduce, and I correct what I get wrong.
